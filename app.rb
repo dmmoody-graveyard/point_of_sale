@@ -20,3 +20,8 @@ post('/products') do
   @product.save()
   erb(:success)
 end
+
+get("/products/:id/edit") do
+  @product = Product.find(params.fetch("id").to_i())
+  erb(:product_edit)
+end
