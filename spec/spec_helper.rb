@@ -5,6 +5,8 @@ require("product")
 
 RSpec.configure do |config|
   config.after(:each) do
-    DB.exec("DELETE FROM products *;")
+    Product.all().each do |product|
+      product.destroy()
+    end
   end
 end

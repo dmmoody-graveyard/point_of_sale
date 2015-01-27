@@ -25,3 +25,13 @@ get("/products/:id/edit") do
   @product = Product.find(params.fetch("id").to_i())
   erb(:product_edit)
 end
+
+patch("/products/:id") do
+  name = params.fetch("name")
+  price = params.fetch("price")
+  status = params.fetch("status")
+  @product = Product.find(params.fetch("id").to_i())
+  @product.update({:name => name, :price => price, :status => status})
+  @products = Product.all()
+  erb(:index)
+end
