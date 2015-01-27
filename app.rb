@@ -26,6 +26,13 @@ get("/products/:id/edit") do
   erb(:product_edit)
 end
 
+delete("/products/:id") do
+  @product = Product.find(params.fetch("id").to_i())
+  @product.delete()
+  @products = Product.all()
+  erb(:index)
+end 
+
 patch("/products/:id") do
   name = params.fetch("name")
   price = params.fetch("price")
